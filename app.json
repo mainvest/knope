@@ -1,0 +1,5 @@
+{
+  "name": "knope",
+  "description": "Generate PDFs from Markdown and Handlebars",
+  "repository": "https://github.com/mainvest/knope"
+}
