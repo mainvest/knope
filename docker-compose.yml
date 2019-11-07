@@ -7,3 +7,6 @@ services:
       - "5000:5000"
     volumes:
       - ./app:/app
+    environment:
+      # Sample token (comment out to run without authentication)
+      - "AUTH_TOKEN=d8393b4cb0d14ed0c988770067eaac6e"
