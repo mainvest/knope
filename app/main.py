@@ -1,10 +1,12 @@
-import os, time, random, glob
+import os
 
 import pdfkit
 import markdown
 from pybars import Compiler
 
 from flask import Flask, send_file, send_file, request
+
+from lib import temp_files
 
 app = Flask(__name__)
 
@@ -16,7 +18,7 @@ def hello():
 
 @app.route("/generate", methods=["GET", "POST"])
 def generate():
-	delete_old_temp_files()
+	temp_files.delete_expired_temp_files()
 
 	params = merged_params()
 
@@ -38,7 +40,7 @@ def generate():
 	if response_format == "pdf":
 		pdf_options = DEFAULT_PDF_OPTIONS
 
-		temp_file_path = get_temp_file_path(ext="pdf")
+		temp_file_path = temp_files.get_file_path(ext="pdf")
 
 		pdfkit.from_string(
 			html_content,
@@ -62,33 +64,6 @@ DEFAULT_PDF_OPTIONS = {
 	"footer-center": "[page]",
 }
 
-TEMP_DIR = "./tmp/"
-def ensure_temp_directory_exists():
-	if not os.path.exists(TEMP_DIR):
-	    os.makedirs(TEMP_DIR)
-
-SECONDS_TILL_DELETION = 30
-
-def delete_old_temp_files():
-	now = int(time.time())
-	for filepath in glob.glob("%s/*" % TEMP_DIR):
-		filename = os.path.basename(filepath)
-		try:
-			timepart = int(filename.split("-")[0])
-			if (timepart + SECONDS_TILL_DELETION) < now:
-				os.remove(filepath)
-
-		except ValueError:
-			pass
-
-def get_temp_file_path(ext="txt"):
-	now = int(time.time())
-	filename = "%i-%i.%s" % (now, random.randint(0, 10000000), ext)
-	return "%s/%s" % (TEMP_DIR, filename)
-
-ensure_temp_directory_exists()
-delete_old_temp_files()
-
 def generate_html(template, content):
 	compiler = Compiler()
 	markdown_with_content = compiler.compile(template)(content)
@@ -103,6 +78,9 @@ def merged_params():
 	if json_data:
 		all_params.update(json_data)
 	return all_params
+
+temp_files.ensure_temp_directory_exists()
+temp_files.delete_expired_temp_files()
 
 if __name__ == "__main__":
 	# For development
