@@ -10,3 +10,7 @@ curl with {template: "<html><head><style>body {text-align: center;}</style></hea
 ```
 
 Optionally, set a `token` environment variable in knope, and it will be required as `token` in the request payload.
+
+## Note on wkhtmltopdf
+
+`pdfkit` depends on `wkhtmltopdf`. Installing it seems like it would be as simple as `sudo apt-get install wkhtmltopdf`, but that version don't support all features we might want, like page footers. ![Thanks to yajra](https://gist.github.com/yajra/80ae402e2084191cd1f6e17fa581320e) for the method of installing wkhtmltopdf with patched qt.

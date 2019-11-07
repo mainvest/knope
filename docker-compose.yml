@@ -4,6 +4,6 @@ services:
     build: .
     command: python main.py
     ports:
-      - "4091:5000"
+      - "5000:5000"
     volumes:
       - ./app:/app
