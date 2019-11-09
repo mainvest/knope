@@ -1,5 +1,4 @@
 import os
-
 from flask import Flask, send_file, send_file, request
 from lib import temp_files, document_generation
 
@@ -44,6 +43,20 @@ def generate():
 			template, dynamic_content, pdf_options, temp_file_path
 		)
 		return send_file(temp_file_path)
+
+	elif response_format == "pdf_base64":
+		pdf_options = params.get("options", document_generation.DEFAULT_PDF_OPTIONS)
+		temp_file_path = temp_files.get_file_path(ext="pdf")
+
+		# We make the PDF, get the base64 data, and can delete it immediately
+		document_generation.save_pdf(
+			template, dynamic_content, pdf_options, temp_file_path
+		)
+		base64_data = document_generation.file_to_base64(temp_file_path)
+		os.remove(temp_file_path)
+
+		return base64_data
+
 
 	elif response_format == "html":
 		# Makes the same subsitutions as the PDF method, but doesn't write to PDF
