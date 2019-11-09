@@ -1,3 +1,4 @@
+import base64
 import pdfkit
 import markdown
 from pybars import Compiler
@@ -10,6 +11,10 @@ def save_pdf(template, content, options, file_path):
 		file_path,
 		options=options
 	)
+
+def file_to_base64(file_path):
+	data = open(file_path, "rb").read()
+	return base64.b64encode(data)
 
 def markdown_to_html(template, content):
 	compiler = Compiler()
