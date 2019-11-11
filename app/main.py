@@ -23,10 +23,10 @@ def generate():
 		return auth_check
 
 	# Template is a markdown template (which can include HTML)
-	template = params.get("template", "This is the *default* Knope PDF!")
+	template = params.get("template", "<em>No template parameter present.</em>")
 
 	# Data to be fed into the template using handlebars
-	dynamic_content = params.get("content", {})
+	dynamic_content = params.get("context", {})
 
 	# Valid options are PDF or HTML
 	response_format = params.get("format", "pdf")
