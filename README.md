@@ -24,7 +24,7 @@ Optionally, set an `AUTH_TOKEN` environment variable in knope and it will be req
 
 ### Format
 
-Include `{"format": "html"}` in the request to view the output of the Handlebars as HTML.
+Include `{"format": "html"}` in the request to view the output from Handlebars as HTML.
 
 ## Dependencies
 
