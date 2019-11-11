@@ -10,9 +10,15 @@ curl with {template: "<html><head><style>body {text-align: center;}</style></hea
 
 ## Environmental Variables
 
-Optionally, set a `AUTH_TOKEN` environment variable in knope, and it will be required as `token` in the request payload.
+Set a `AUTH_TOKEN` environment variable in knope, and it will be required as `token` in the request payload. Otherwise, there's no authentication.
 
-Listens to the `PORT` environmental variable when running in production (with Nginx and uWSGI).
+## docker-compose for dev
+
+To run in development on port 5000:
+```
+docker-compose build
+docker-compose up
+```
 
 ## Note on wkhtmltopdf
 

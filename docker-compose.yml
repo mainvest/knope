@@ -5,9 +5,9 @@ services:
     command: python main.py
     ports:
       - "5000:5000"
+      - "5001:80"
     volumes:
       - ./app:/app
     environment:
-      - "PORT=5000"
       # Sample token (comment out to run without authentication)
       - "AUTH_TOKEN=d8393b4cb0d14ed0c988770067eaac6e"
