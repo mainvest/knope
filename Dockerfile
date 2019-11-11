@@ -11,8 +11,4 @@ RUN wget https://github.com/wkhtmltopdf/wkhtmltopdf/releases/download/0.12.4/wkh
 COPY ./app/requirements.txt /app/requirements.txt
 RUN pip install -r ./requirements.txt
 
-
 COPY ./app /app
-# COPY ./app/nginx.conf /etc/nginx/nginx.conf
-
-CMD /bin/bash -c "envsubst '\$PORT' < /etc/nginx/conf.d/default.conf.template > /etc/nginx/conf.d/default.conf" && nginx -g 'daemon off;'
