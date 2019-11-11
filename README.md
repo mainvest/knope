@@ -28,4 +28,4 @@ Include `{"format": "html"}` in the request to view the output from Handlebars a
 
 ## Dependencies
 
-`pdfkit` depends on `wkhtmltopdf`, but to enable some features, including page footers, we need to rely on [this method](https://gist.github.com/yajra/80ae402e2084191cd1f6e17fa581320e) for installation.
+`pdfkit` depends on `wkhtmltopdf`, but to enable some features (such as page footers) we need to rely on [this method](https://gist.github.com/yajra/80ae402e2084191cd1f6e17fa581320e) for installation.
