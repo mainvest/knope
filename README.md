@@ -4,7 +4,7 @@ knope is a microservice that generates PDFs from a template using Handlebars and
 ## Usage
 Make a `POST` request to `/generate` with a `template` and `context` parameter.
 
-Development:
+**Development**
 ```
 docker-compose build
 docker-compose up
@@ -13,7 +13,7 @@ curl -X POST -H "Content-Type: application/json" \
  http://0.0.0.0:5000/generate -o output.pdf
 ```
 
-Production:
+**Production**
 ```
 docker run -d --name knope -p 80:80 -e AUTH_TOKEN=SET_YOUR_TOKEN_HERE mainvest/knope
 ```
@@ -24,7 +24,7 @@ Optionally, set an `AUTH_TOKEN` environment variable in knope, and it will be re
 
 ### Format
 
-Pass `format=html` to retrieve the HTML output of the Handlebars processing, prior to PDF creation.
+Include `{"format": "html"}` in the request to retrieve the HTML output of the Handlebars as HTML.
 
 ## Dependencies
 
