@@ -8,7 +8,11 @@ Command to run docker
 curl with {template: "<html><head><style>body {text-align: center;}</style></head><body><h1>City Charter</h1><p>**{{city}}, {{state}}**</p></body></html>", context: {city: "Pawnee", state: "Indiana"}} 
 ```
 
-Optionally, set a `token` environment variable in knope, and it will be required as `token` in the request payload.
+## Environmental Variables
+
+Optionally, set a `AUTH_TOKEN` environment variable in knope, and it will be required as `token` in the request payload.
+
+Listens to the `PORT` environmental variable when running in production (with Nginx and uWSGI).
 
 ## Note on wkhtmltopdf
 
