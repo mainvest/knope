@@ -2,12 +2,11 @@ version: "3.3"
 services:
   app:
     build: .
-    # command: python main.py
+    command: python main.py
     ports:
       - "5000:5000"
-      - "5001:80"
-    # volumes:
-    #   - ./app:/app
+    volumes:
+      - ./app:/app
     # Sample optional authentication token
     # environment:
     #   - "AUTH_TOKEN=d8393b4cb0d14ed0c988770067eaac6e"
