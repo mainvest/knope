@@ -20,11 +20,11 @@ docker run -d --name knope -p 80:80 -e AUTH_TOKEN=SET_YOUR_TOKEN_HERE mainvest/k
 
 ### Authentication
 
-Optionally, set an `AUTH_TOKEN` environment variable in knope, and it will be required as `token` in the request payload.
+Optionally, set an `AUTH_TOKEN` environment variable in knope and it will be required as `token` in the request payload.
 
 ### Format
 
-Include `{"format": "html"}` in the request to retrieve the HTML output of the Handlebars as HTML.
+Include `{"format": "html"}` in the request to view the output of the Handlebars as HTML.
 
 ## Dependencies
 
