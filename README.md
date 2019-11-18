@@ -18,6 +18,14 @@ curl -X POST -H "Content-Type: application/json" \
 docker run -d --name knope -p 80:80 -e AUTH_TOKEN=SET_YOUR_TOKEN_HERE mainvest/knope
 ```
 
+### Handlerbar Helpers
+
+We have implemented a handful of custom handlebar helpers to help with document generation.
+
+- pluralize: `{{pluralize count "cat" "cats"}}`
+- with_commas: `{{with_commas 10202}}`
+- sum: `{{sum items "value"}}`
+
 ### Authentication
 
 Optionally, set an `AUTH_TOKEN` environment variable in knope and it will be required as `token` in the request payload.

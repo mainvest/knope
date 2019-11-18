@@ -6,9 +6,15 @@ app = Flask(__name__)
 
 app_auth_token = os.getenv("AUTH_TOKEN")
 
+VERSION = "1.1.0"
+
 @app.route("/")
 def hello():
     return send_file("static/index.html")
+
+@app.route("/version")
+def version():
+	return VERSION
 
 @app.route("/generate", methods=["GET", "POST"])
 def generate():
@@ -71,8 +77,6 @@ def unauthorized_check(params):
 			return "Provide 'token' for authentication", 401
 		elif params["token"] != app_auth_token:
 			return "Invalid authentication token", 403
-
-
 
 def merged_params():
 	all_params = {}
