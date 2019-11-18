@@ -25,6 +25,7 @@ We have implemented a handful of custom handlebar helpers to help with document 
 - pluralize: `{{pluralize count "cat" "cats"}}`
 - with_commas: `{{with_commas 10202}}`
 - sum: `{{sum items "value"}}`
+- datetime: `{{sum date "%m/%d/%Y"}}` (uses python strftime formatting)
 
 ### Authentication
 

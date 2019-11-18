@@ -1,7 +1,10 @@
+from datetime import datetime
 import base64
+
 import pdfkit
 import markdown
 from pybars import Compiler
+from dateutil.parser import parse as parsedate
 
 def save_pdf(template, content, options, file_path):
 	html_content = markdown_to_html(template, content)
@@ -42,10 +45,14 @@ def with_commas_helper(this, number):
 def sum_helper(this, items, key):
 	return sum(x.get(key, 0) for x in items)
 
+def datetime_helper(this, input_str, format):
+	return datetime.strftime(parsedate(input_str), format)
+
 TEMPLATE_HELPERS = {
 	"pluralize": pluralize_helper,
 	"with_commas": with_commas_helper,
-	"sum": sum_helper
+	"sum": sum_helper,
+	"datetime": datetime_helper
 }
 
 DEFAULT_PDF_OPTIONS = {
