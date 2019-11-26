@@ -26,27 +26,29 @@ def markdown_to_html(template, content):
 	md = markdown.Markdown(extensions=["extra"])
 	return md.convert(markdown_with_content)
 
-
-def pluralize_helper(this, count, singular, plural):
+def pluralize_helper(this, count=None, singular=None, plural=None):
 	if count == 1:
 		return singular
 	else:
 		return plural
 
-def pluralize_helper(this, count, singular, plural):
-	if count == 1:
-		return singular
-	else:
-		return plural
+def with_commas_helper(this, number=None):
+	try:
+		return '{:,}'.format(number)
+	except (ValueError, TypeError):
+		return None
 
-def with_commas_helper(this, number):
-	return '{:,}'.format(number)
+def sum_helper(this, items=[], key=None):
+	try:
+		return sum(x.get(key, 0) for x in items)
+	except (AttributeError, TypeError):
+		return None
 
-def sum_helper(this, items, key):
-	return sum(x.get(key, 0) for x in items)
-
-def datetime_helper(this, input_str, format):
-	return datetime.strftime(parsedate(input_str), format)
+def datetime_helper(this, input_str=None, format="%Y-%m-%d"):
+	try:
+		return datetime.strftime(parsedate(input_str), format)
+	except (ValueError, TypeError):
+		return None
 
 TEMPLATE_HELPERS = {
 	"pluralize": pluralize_helper,

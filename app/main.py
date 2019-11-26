@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 app_auth_token = os.getenv("AUTH_TOKEN")
 
-VERSION = "1.1.0"
+VERSION = "1.1.2"
 
 @app.route("/")
 def hello():
